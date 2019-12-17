@@ -1,0 +1,22 @@
+$ORIGIN goblin.ipi.testing.
+$TTL 300                                   ; 5 minutes
+@       3600 IN SOA dns1.goblin.testing. hostmaster.ipi.testing. (
+                                2019010101 ; serial
+                                21600      ; refresh (6 hours)
+                                3600       ; retry (1 hour)
+                                604800     ; expire (1 week)
+                                86400      ; minimum TTL (1 hour)
+                                )
+;
+api                                      A 192.168.111.132
+ns1                                      A 192.168.111.133
+$ORIGIN goblin.ipi.testing.
+provisioner                              A 192.168.111.126 
+goblin-master-0                          A 192.168.111.127
+goblin-master-1                          A 192.168.111.128
+goblin-master-2                          A 192.168.111.129
+goblin-worker-0                          A 192.168.111.130
+goblin-worker-1                          A 192.168.111.131
+$ORIGIN apps.goblin.ipi.testing.
+*                                        A 192.168.111.6
+

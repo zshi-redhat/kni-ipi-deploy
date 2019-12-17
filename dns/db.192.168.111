@@ -1,0 +1,16 @@
+$TTL 300
+@  IN  SOA  dns1.ipi.testing.  hostmaster.ipi.testing. (
+       2001062501  ; serial
+       21600       ; refresh after 6 hours
+       3600        ; retry after 1 hour
+       604800      ; expire after 1 week
+       86400 )     ; minimum TTL of 1 day
+;
+126 IN  PTR     provisioner.goblin.ipi.testing.
+127 IN 	PTR	openshift-master-0.goblin.ipi.testing.
+128 IN 	PTR	openshift-master-1.goblin.ipi.testing.
+129 IN 	PTR	openshift-master-2.goblin.ipi.testing.
+130 IN 	PTR	openshift-worker-0.goblin.ipi.testing.
+131 IN 	PTR	openshift-worker-1.goblin.ipi.testing.
+132 IN  PTR     api.goblin.ipi.testing.
+133 IN  PTR     ns1.goblin.ipi.testing.
