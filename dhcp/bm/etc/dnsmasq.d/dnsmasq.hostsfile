@@ -1,0 +1,7 @@
+0c:c4:7a:19:6f:86,192.168.111.126,provisioner.goblin.ipi.testing
+0c:c4:7a:db:a8:55,192.168.111.127,goblin-master-0.goblin.ipi.testing
+0C:C4:7A:DB:A9:93,192.168.111.128,goblin-master-1.goblin.ipi.testing
+0C:C4:7A:DB:A8:59,192.168.111.129,goblin-master-2.goblin.ipi.testing
+0C:C4:7A:DB:AC:03,192.168.111.130,goblin-worker-0.goblin.ipi.testing
+0c:c4:7a:db:a9:b3,192.168.111.131,goblin-worker-1.goblin.ipi.testing
+

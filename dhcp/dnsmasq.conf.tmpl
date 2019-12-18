@@ -1,0 +1,28 @@
+#disable dns
+port=0
+
+interface=baremetal
+bind-interfaces
+
+strict-order
+except-interface=lo
+
+domain=${CLUSTER_NAME}.${CLUSTER_DOMAIN},192.168.111.0/24
+
+dhcp-range=192.168.111.10,192.168.111.250,30m
+#default gateway
+dhcp-option=3,${CLUSTER_DHCP_SERVER}
+#dns server
+dhcp-option=6,${CLUSTER_DNS_SERVER}
+#search domain
+dhcp-option=24,${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+log-queries
+log-dhcp
+
+dhcp-no-override
+dhcp-authoritative
+
+dhcp-hostsfile=/etc/dnsmasq.d/dnsmasq.hostsfile
+dhcp-leasefile=/var/run/dnsmasq/dnsmasq.leasefile
+log-facility=/var/run/dnsmasq/dnsmasq.log
+
