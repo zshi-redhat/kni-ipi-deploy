@@ -1,0 +1,9 @@
+export CLUSTER_NAME="goblin"
+export CLUSTER_DOMAIN="ipi.testing"
+
+MASTER_0_MAC="0c:c4:7a:db:a8:55"
+MASTER_1_MAC="0C:C4:7A:DB:A9:93"
+MASTER_2_MAC="0C:C4:7A:DB:A8:59"
+WORKER_0_MAC="0C:C4:7A:DB:A8:59"
+WORKER_1_MAC="0c:c4:7a:db:a9:b3"
+
