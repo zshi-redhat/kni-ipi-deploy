@@ -5,16 +5,16 @@ parse_install_config() {
     local manifest_dir=$2
 
     # shellcheck disable=SC2016
-    if ! values=$(yq 'paths as $p | [ ( [ $p[] | tostring ] | join(".") ) , ( getpath($p) | tojson ) ] | join(" ")' "$file"); then
+    if ! VALUES=$(yq 'paths as $p | [ ( [ $p[] | tostring ] | join(".") ) , ( getpath($p) | tojson ) ] | join(" ")' "$file"); then
         printf "Error during parsing...%s\n" "$file"
 
         return 1
     fi
 
-    mapfile -t lines < <(echo "$values" | sed -e 's/^"//' -e 's/"$//' -e 's/\\\\\\"/"/g' -e 's/\\"//g')
+    mapfile -t LINES < <(echo "$VALUES" | sed -e 's/^"//' -e 's/"$//' -e 's/\\\\\\"/"/g' -e 's/\\"//g')
 
     declare -g -A INSTALL_CONFIG
-    for line in "${lines[@]}"; do
+    for line in "${LINES[@]}"; do
         # create the associative array
         INSTALL_CONFIG[${line%% *}]=${line#* }
     done
@@ -32,7 +32,7 @@ declare -g -A INSTALL_CONFIG_MAP=(
     [DNS_VIP]="platform.dnsVIP"
 
     # Provisioning host
-    [MASTER_0_BMC]="platform.hosts.0.bootMACAddress"
+    [MASTER_0_BMC]="platform.baremetal.hosts.[master-0].bootMACAddress"
 
     [PROV_INTF_IP]="provisioningInfrastructure.provHost.interfaces.provisioningIpAddress"
     [PROV_BRIDGE]="provisioningInfrastructure.provHost.bridges.provisioning"
@@ -53,14 +53,38 @@ declare -g -A INSTALL_CONFIG_MAP=(
     [PROVIDE_GW]="provisioningInfrastructure.provHost.services.baremetalGateway"
 )
 
+values=$(yq 'paths as $p | [ ( [ $p[] | tostring ] | join(".") ) , ( getpath($p) | tojson ) ] | join(" ")' "$file")
+mapfile -t lines < <(echo "$values" | sed -e 's/^"//' -e 's/"$//' -e 's/\\\\\\"/"/g' -e 's/\\"//g')
+
+mapfile -t hosts < <(printf '%s\n' "${lines[@]}" | sed -nre 's/^platform.baremetal.hosts.([0-9]+).name\s+([a-z0-9-]+)/\2:\1/p')
+for pair in "${hosts[@]}"; do 
+  MMAP["${pair%%:*}"]="${pair##*:}"; 
+done;
+
 map_install_config() {
     status="$1"
 
     local error=false
 
+    mapfile -t hosts < <(printf '%s\n' "${LINES[@]}" | sed -nre 's/^platform.baremetal.hosts.([0-9]+).name\s+([a-z0-9-]+)/\2:\1/p')
+    for pair in "${hosts[@]}"; do 
+      MMAP["${pair%%:*}"]="${pair##*:}"; 
+    done;
+
     for var in "${!INSTALL_CONFIG_MAP[@]}"; do
         map_rule=${INSTALL_CONFIG_MAP[$var]}
 
+        reg='\[([0-9-A-Za-z0-9]+)\]'
+
+        if [[ $map_rule =~ $reg ]]; then
+             name="${BASH_REMATCH[1]}"
+             if [[ ! "${MMAP[$name]}" ]]; then
+                printf "Invalid rule or missing value: %s\n" "$map_rule"
+                exit 1
+             fi
+           map_rule=${map_rule/\[$name\]/${MMAP[$name]} 
+        fi 
+        
         if [[ $map_rule =~ ^\| ]]; then
             map_rule=${map_rule#|}
         else
