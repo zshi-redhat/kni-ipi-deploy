@@ -1,7 +1,7 @@
 apiVersion: v1
 baseDomain: ipi.testing
 compute:
-- name: worker
+  name: worker
   replicas: 3
 controlPlane:
   name: master

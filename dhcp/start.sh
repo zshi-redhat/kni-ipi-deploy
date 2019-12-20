@@ -3,17 +3,16 @@
 OUTPUT_DIR="generated"
 
 CONTAINER_NAME="ipi-dnsmasq-bm"
-CLUSTER_DNS="192.168.111.3"
 PROJECT_DIR="/root/kni-ipi-deploy"
 
-ORIGIN='$ORIGIN'
+# shellcheck disable=SC1091
 source "../settings.sh"
 
 mkdir -p "$OUTPUT_DIR"/bm/etc
 mkdir -p "$OUTPUT_DIR"/bm/var
  
-cat dnsmasq.conf.tmpl | envsubst > "${OUTPUT_DIR}"/bm/etc/dnsmasq.conf
-cat dnsmasq.hostsfile.tmpl | envsubst > "${OUTPUT_DIR}"/bm/etc/dnsmasq.hostsfile
+envsubst < dnsmasq.conf.tmpl > "${OUTPUT_DIR}"/bm/etc/dnsmasq.conf
+envsubst < dnsmasq.hostsfile.tmpl > "${OUTPUT_DIR}"/bm/etc/dnsmasq.hostsfile
 
 CONTAINER_NAME="ipi-dnsmasq-bm"
 CONTAINER_IMAGE="quay.io/poseidon/dnsmasq"
