@@ -1,12 +1,13 @@
 #!/bin/bash
 
-export API_VIP="192.168.111.5"
+export API_VIP="10.0.1.5"
 export BM_BRIDGE="baremetal"
+export BM_GW_IP="10.0.1.3"
 export CLUSTER_DOMAIN="ipi.testing"
 export CLUSTER_NAME="goblin"
-export DNS_VIP="192.168.111.3"
+export DNS_VIP="10.0.1.3"
 export EXT_INTF="eno1"
-export INGRESS_VIP="192.168.111.4"
+export INGRESS_VIP="10.0.1.4"
 export MASTER_0_BMC="0c:c4:7a:db:a8:55"
 export MASTER_1_BMC="0C:C4:7A:DB:A9:93"
 export MASTER_2_BMC="0C:C4:7A:DB:A8:59"
