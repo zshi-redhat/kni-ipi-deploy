@@ -8,15 +8,15 @@ $TTL 300                                   ; 5 minutes
                                 86400      ; minimum TTL (1 hour)
                                 )
 ;
-api                                      A 192.168.111.132
-ns1                                      A 192.168.111.133
+api                                      A 10.0.1.132
+ns1                                      A 10.0.1.133
 $ORIGIN ${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
-provisioner                              A 192.168.111.126 
-${CLUSTER_NAME}-master-0                          A 192.168.111.127
-${CLUSTER_NAME}-master-1                          A 192.168.111.128
-${CLUSTER_NAME}-master-2                          A 192.168.111.129
-${CLUSTER_NAME}-worker-0                          A 192.168.111.130
-${CLUSTER_NAME}-worker-1                          A 192.168.111.131
+provisioner                              A 10.0.1.126 
+${CLUSTER_NAME}-master-0                          A 10.0.1.127
+${CLUSTER_NAME}-master-1                          A 10.0.1.128
+${CLUSTER_NAME}-master-2                          A 10.0.1.129
+${CLUSTER_NAME}-worker-0                          A 10.0.1.130
+${CLUSTER_NAME}-worker-1                          A 10.0.1.131
 $ORIGIN apps.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
-*                                        A 192.168.111.6
+*                                        A 10.0.1.6
 

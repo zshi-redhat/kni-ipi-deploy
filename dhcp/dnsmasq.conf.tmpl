@@ -7,13 +7,13 @@ bind-interfaces
 strict-order
 except-interface=lo
 
-domain=${CLUSTER_NAME}.${CLUSTER_DOMAIN},192.168.111.0/24
+domain=${CLUSTER_NAME}.${CLUSTER_DOMAIN},10.0.1.0/24
 
-dhcp-range=192.168.111.10,192.168.111.250,30m
+dhcp-range=10.0.1.10,10.0.1.250,30m
 #default gateway
-dhcp-option=3,${CLUSTER_DHCP_SERVER}
+dhcp-option=3,${BM_GW_IP}
 #dns server
-dhcp-option=6,${CLUSTER_DNS_SERVER}
+dhcp-option=6,${DNS_VIP}
 #search domain
 dhcp-option=24,${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 log-queries

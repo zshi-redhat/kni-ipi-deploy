@@ -1,11 +1,11 @@
 .:53 {
     log
     errors
-    file /etc/coredns/db.192.168.111    111.168.192.in-addr.arpa
+    file /etc/coredns/db.reverse    1.0.10.in-addr.arpa
     forward . 10.11.5.19  
 }
 
-ipi.testing:53 {
+${CLUSTER_DOMAIN}:53 {
     log
     errors
     file /etc/coredns/db.zone
