@@ -25,59 +25,59 @@ platform:
     provisioningBridge: provisioning
     externalBridge: baremetal
     hosts:
-        - name: master-0
-          role: master
-          bmc:
-            address: ipmi://10.19.110.2
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0c:c4:7a:db:a8:55
-          hardwareProfile: default
+      - name: master-0
+        role: master
+        bmc:
+          address: ipmi://10.19.110.2
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0c:c4:7a:db:a8:55
+        hardwareProfile: default
 
-        - name: master-1
-          role: master
-          bmc:
-            address: ipmi://10.19.110.12
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0C:C4:7A:DB:A9:93
-          hardwareProfile: default
+      - name: master-1
+        role: master
+        bmc:
+          address: ipmi://10.19.110.12
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0C:C4:7A:DB:A9:93
+        hardwareProfile: default
 
-        - name: master-2
-          role: master
-          bmc: 
-            address: ipmi://10.19.110.10
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0C:C4:7A:DB:A8:59
-          hardwareProfile: default
-      
-        - name: worker-0
-          role: worker
-          bmc:
-            address: ipmi://10.19.110.8
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0C:C4:7A:DB:AC:03
-          hardwareProfile: default
+      - name: master-2
+        role: master
+        bmc: 
+          address: ipmi://10.19.110.10
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0C:C4:7A:DB:A8:59
+        hardwareProfile: default
+    
+      - name: worker-0
+        role: worker
+        bmc:
+          address: ipmi://10.19.110.8
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0C:C4:7A:DB:AC:03
+        hardwareProfile: default
 
-        - name: worker-1
-          role: worker
-          bmc:
-            address: ipmi://10.19.110.22
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0c:c4:7a:db:a9:b3
-          hardwareProfile: default
+      - name: worker-1
+        role: worker
+        bmc:
+          address: ipmi://10.19.110.22
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0c:c4:7a:db:a9:b3
+        hardwareProfile: default
 
-        - name: worker-2
-          role: worker
-          bmc:
-            address: ipmi://10.19.110.20
-            username: ADMIN
-            password: ADMIN
-          bootMACAddress: 0c:c4:7a:db:a9:b1
-          hardwareProfile: default
+      - name: worker-2
+        role: worker
+        bmc:
+          address: ipmi://10.19.110.20
+          username: ADMIN
+          password: ADMIN
+        bootMACAddress: 0c:c4:7a:db:a9:b1
+        hardwareProfile: default
 
 pullSecret: 'PULL_SECRET'
 sshKey: |
