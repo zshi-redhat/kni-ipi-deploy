@@ -9,7 +9,7 @@ PROJECT_DIR="$HOME/kni-ipi-deploy"
 source "../settings.sh"
 
 export API_OCTET=$(echo "$API_VIP" | cut -d '.' -f 4)
-export DNS_OCTET=$(echo "$DNS_VIP" | cut -d '.' -f 4)
+export DNS_OCTET=$(echo "$DNS_IP" | cut -d '.' -f 4)
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -20,6 +20,6 @@ envsubst '${CLUSTER_DOMAIN} ${CLUSTER_NAME} ${API_VIP} ${DNS_VIP} ${INGRESS_VIP}
 envsubst '${CLUSTER_DOMAIN} ${CLUSTER_NAME} ${API_OCTET} ${DNS_OCTET}' < db.reverse.tmpl > "${OUTPUT_DIR}"/db.reverse
 
 podman run -d --expose=53/udp --name "$CONTAINER_NAME" \
-            -p "$DNS_VIP:53:53/tcp" -p "$DNS_VIP:53:53/udp" \
+            -p "$DNS_IP:53:53/tcp" -p "$DNS_IP:53:53/udp" \
             -v "$PROJECT_DIR/dns/$OUTPUT_DIR:/etc/coredns:z" coredns/coredns:latest \
             -conf /etc/coredns/Corefile
