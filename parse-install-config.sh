@@ -42,11 +42,11 @@ declare -g -A INSTALL_CONFIG_MAP=(
     [DNS_VIP]="platform.baremetal.dnsVIP"
 
     # Provisioning host
-    [MASTER_0_BMC]="platform.baremetal.hosts.[master-0].bootMACAddress"
-    [MASTER_1_BMC]="platform.baremetal.hosts.[master-1].bootMACAddress"
-    [MASTER_2_BMC]="platform.baremetal.hosts.[master-2].bootMACAddress"
-    [WORKER_0_BMC]="platform.baremetal.hosts.[master-0].bootMACAddress"
-    [WORKER_1_BMC]="platform.baremetal.hosts.[master-1].bootMACAddress"
+    [MASTER_0_MAC]="platform.baremetal.hosts.[master-0].bootMACAddress"
+    [MASTER_1_MAC]="platform.baremetal.hosts.[master-1].bootMACAddress"
+    [MASTER_2_MAC]="platform.baremetal.hosts.[master-2].bootMACAddress"
+    [WORKER_0_MAC]="platform.baremetal.hosts.[master-0].bootMACAddress"
+    [WORKER_1_MAC]="platform.baremetal.hosts.[master-1].bootMACAddress"
 )
 
 map_install_config() {
