@@ -2,9 +2,10 @@
 
 export API_VIP="10.0.1.4"
 export BM_BRIDGE="baremetal"
-export BM_GW_IP="10.0.1.3"
+export BM_GW_IP="10.0.1.2"
 export CLUSTER_DOMAIN="ipi.testing"
 export CLUSTER_NAME="goblin"
+export DNS_IP="10.0.1.2"
 export DNS_VIP="10.0.1.3"
 export EXT_INTF="eno1"
 export INGRESS_VIP="10.0.1.5"
