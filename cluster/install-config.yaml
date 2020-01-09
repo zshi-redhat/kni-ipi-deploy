@@ -11,16 +11,11 @@ controlPlane:
 metadata:
   name: goblin
 networking:
-  clusterNetworks:
-  - cidr: 10.128.0.0/14
-    hostPrefix: 23
-  networkType: OpenShiftSDN
-  serviceNetwork:
-  - 172.30.0.0/16
+  machineCIDR: 10.0.1.0/24
 platform:
   baremetal:
-    apiVIP: 10.0.1.5
-    ingressVIP: 10.0.1.4
+    apiVIP: 10.0.1.4
+    ingressVIP: 10.0.1.5
     dnsVIP: 10.0.1.3
     provisioningBridge: provisioning
     externalBridge: baremetal
