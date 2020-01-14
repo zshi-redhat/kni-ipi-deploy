@@ -54,7 +54,7 @@ platform:
           username: ADMIN
           password: ADMIN
         bootMACAddress: 0C:C4:7A:DB:AC:03
-        hardwareProfile: default
+        hardwareProfile: unknown
 
       - name: worker-1
         role: worker
@@ -63,7 +63,7 @@ platform:
           username: ADMIN
           password: ADMIN
         bootMACAddress: 0c:c4:7a:db:a9:b3
-        hardwareProfile: default
+        hardwareProfile: unknown
 
       - name: worker-2
         role: worker
@@ -72,7 +72,7 @@ platform:
           username: ADMIN
           password: ADMIN
         bootMACAddress: 0c:c4:7a:db:a9:b1
-        hardwareProfile: default
+        hardwareProfile: unknown
 
 pullSecret: 'PULL_SECRET'
 sshKey: |
