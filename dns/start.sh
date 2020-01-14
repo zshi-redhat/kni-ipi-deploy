@@ -9,7 +9,7 @@ PROJECT_DIR="$HOME/kni-ipi-deploy"
 source "../settings.sh"
 
 export API_OCTET=$(echo "$API_VIP" | cut -d '.' -f 4)
-export DNS_OCTET=$(echo "$DNS_IP" | cut -d '.' -f 4)
+export DNS_OCTET=$(echo "$DNS_VIP" | cut -d '.' -f 4)
 
 mkdir -p "$OUTPUT_DIR"
 
