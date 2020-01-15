@@ -17,7 +17,7 @@ envsubst < dnsmasq.hostsfile.tmpl > "${OUTPUT_DIR}"/bm/etc/dnsmasq.d/dnsmasq.hos
 CONTAINER_NAME="ipi-dnsmasq-bm"
 CONTAINER_IMAGE="quay.io/poseidon/dnsmasq"
 
-podman run -d --name "$CONTAINER_NAME" --net=host \
+sudo podman run -d --name "$CONTAINER_NAME" --net=host \
             -v "$PROJECT_DIR/dhcp/$OUTPUT_DIR/bm/var/run:/var/run/dnsmasq:Z" \
             -v "$PROJECT_DIR/dhcp/$OUTPUT_DIR/bm/etc/dnsmasq.d:/etc/dnsmasq.d:Z" \
             --expose=53 --expose=53/udp --expose=67 --expose=67/udp --expose=69 \

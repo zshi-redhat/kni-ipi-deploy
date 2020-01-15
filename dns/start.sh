@@ -19,7 +19,7 @@ envsubst '${CLUSTER_DOMAIN} ${CLUSTER_NAME} ${API_VIP} ${DNS_VIP} ${INGRESS_VIP}
 # shellcheck disable=SC2016
 envsubst '${CLUSTER_DOMAIN} ${CLUSTER_NAME} ${API_OCTET} ${DNS_OCTET}' < db.reverse.tmpl > "${OUTPUT_DIR}"/db.reverse
 
-podman run -d --expose=53/udp --name "$CONTAINER_NAME" \
+sudo podman run -d --expose=53/udp --name "$CONTAINER_NAME" \
             -p "$DNS_IP:53:53/tcp" -p "$DNS_IP:53:53/udp" \
             -v "$PROJECT_DIR/dns/$OUTPUT_DIR:/etc/coredns:z" coredns/coredns:latest \
             -conf /etc/coredns/Corefile
