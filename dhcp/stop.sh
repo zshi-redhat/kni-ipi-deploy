@@ -1,5 +1,5 @@
 #!/bin/bash
 
-podman stop ipi-dnsmasq-bm
-podman rm ipi-dnsmasq-bm
+sudo podman stop ipi-dnsmasq-bm
+sudo podman rm ipi-dnsmasq-bm
 
