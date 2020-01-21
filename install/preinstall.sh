@@ -9,7 +9,7 @@
 # 5. install/preinstall.sh (this script)
 # 6. install/install.sh 
 
-# Determine latest release of OCP
+# Latest stable 4.3 release as of check-in
 VERSION="4.3.0-0.nightly-2020-01-16-031402"
 RELEASE_IMAGE=$(curl -s https://openshift-release-artifacts.svc.ci.openshift.org/4.3.0-0.nightly-2020-01-16-031402/release.txt | grep 'Pull From: registry' | awk -F ' ' '{print $3}' | xargs)
 CMD=openshift-baremetal-install
