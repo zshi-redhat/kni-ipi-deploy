@@ -13,4 +13,4 @@ data:
   ironic_endpoint: "http://172.22.0.3:6385/v1/"
   ironic_inspector_endpoint: "http://172.22.0.3:5050/v1/"
   cache_url: "http://192.168.0.246/images"
-  rhcos_image_url: https://releases-art-rhcos.svc.ci.openshift.org/art/storage/releases/rhcos-4.3/43.81.201912131630.0/x86_64/rhcos-43.81.201912131630.0-openstack.x86_64.qcow2.gz
+  rhcos_image_url: https://releases-art-rhcos.svc.ci.openshift.org/art/storage/releases/rhcos-4.3/43.81.202001142154.0/x86_64/rhcos-43.81.202001142154.0-openstack.x86_64.qcow2.gz
