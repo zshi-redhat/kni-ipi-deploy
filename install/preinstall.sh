@@ -51,10 +51,10 @@ mkdir -p "$IMAGE_DIR"
         gzip -d "$IMAGE_FILE.gz"
         qemu-img convert -O qcow2 -c "$IMAGE_FILE" "$COMP_IMAGE_FILE"
         md5sum "$COMP_IMAGE_FILE" | cut -f 1 -d ' ' > "$COMP_IMAGE_FILE.md5sum"
-
-        sudo podman rm -f image_cache >/dev/null
-        sudo podman run --name image_cache -p 172.22.0.1:80:80/tcp -v /home/"$USER"/image_cache:/usr/share/nginx/html:ro -d nginx
     fi
+
+    sudo podman rm -f image_cache >/dev/null
+    sudo podman run --name image_cache -p 172.22.0.1:80:80/tcp -v /home/"$USER"/image_cache:/usr/share/nginx/html:ro -d nginx
 
 ) || exit 1
 
