@@ -11,12 +11,12 @@
 
 # Latest stable 4.3 release as of check-in
 VERSION="4.3.0-0.nightly-2020-01-16-031402"
-RELEASE_IMAGE=$(curl -s https://openshift-release-artifacts.svc.ci.openshift.org/4.3.0-0.nightly-2020-01-16-031402/release.txt | grep 'Pull From: registry' | awk -F ' ' '{print $3}' | xargs)
+RELEASE_IMAGE=$(curl -s https://openshift-release-artifacts.svc.ci.openshift.org/$VERSION/release.txt | grep 'Pull From: registry' | awk -F ' ' '{print $3}' | xargs)
 CMD=openshift-baremetal-install
 PULL_SECRET=~/pull-secret.json
 EXTRACT_DIR=$(pwd)
 # Get the oc binary
-curl https://openshift-release-artifacts.svc.ci.openshift.org/4.3.0-0.nightly-2020-01-16-031402/openshift-client-linux-$VERSION.tar.gz | tar zxvf - oc
+curl https://openshift-release-artifacts.svc.ci.openshift.org/$VERSION/openshift-client-linux-$VERSION.tar.gz | tar zxvf - oc
 sudo cp ./oc /usr/local/bin/oc
 # Extract the baremetal installer
 echo "RELEASE IMAGE: $RELEASE_IMAGE"
