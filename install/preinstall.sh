@@ -19,7 +19,6 @@ EXTRACT_DIR=$(pwd)
 curl https://openshift-release-artifacts.svc.ci.openshift.org/$VERSION/openshift-client-linux-$VERSION.tar.gz | tar zxvf - oc
 sudo cp ./oc /usr/local/bin/oc
 # Extract the baremetal installer
-echo "RELEASE IMAGE: $RELEASE_IMAGE"
 oc adm release extract --registry-config "${PULL_SECRET}" --command=$CMD --to "${EXTRACT_DIR}" ${RELEASE_IMAGE}
 
 COMMIT_ID=$(./openshift-baremetal-install version | grep '^built from commit' | awk '{print $4}')
@@ -29,4 +28,33 @@ export RHCOS_PATH=$(curl -s -S https://raw.githubusercontent.com/openshift/insta
 
 # Place the URL printed by the following command into your metal3-config.yaml
 # as the "rhcos_image_url" value if necessary
-echo "RHCOS IMAGE: $RHCOS_PATH$RHCOS_URI"
+IMAGE_URL="$RHCOS_PATH$RHCOS_URI"
+echo "RHCOS URI: $RHCOS_URI"
+echo "RHCOS IMAGE: $IMAGE_URL"
+
+# Set up the image cache to boost bootstrap performance
+IMAGE_FILE=$(echo "$RHCOS_URI" | rev | cut -d '.' -f 2- | rev)
+echo "IMAGE_FILE: $IMAGE_FILE"
+IMAGE_DIR="$HOME/image_cache/images/$IMAGE_FILE"
+
+mkdir -p "$IMAGE_DIR"
+
+(
+    COMP_IMAGE_FILE=$(echo "$IMAGE_FILE" | sed 's/openstack/compressed/')
+    USER=$(whoami)
+
+    cd "$IMAGE_DIR"
+
+    if [[ ! -f "$COMP_IMAGE_FILE" ]]; then
+        echo "Pre-caching $IMAGE_FILE for bootstrap..."
+        curl -O -L "$IMAGE_URL"
+        gzip -d "$IMAGE_FILE.gz"
+        qemu-img convert -O qcow2 -c "$IMAGE_FILE" "$COMP_IMAGE_FILE"
+        md5sum "$COMP_IMAGE_FILE" | cut -f 1 -d ' ' > "$COMP_IMAGE_FILE.md5sum"
+    fi
+
+    sudo podman rm -f image_cache >/dev/null
+    sudo podman run --name image_cache -p 172.22.0.1:80:80/tcp -v /home/"$USER"/image_cache:/usr/share/nginx/html:ro -d nginx
+
+) || exit 1
+
