@@ -7,8 +7,12 @@ $TTL 300                                   ; 5 minutes
                                 604800     ; expire (1 week)
                                 86400      ; minimum TTL (1 hour)
                                 )
+_etcd-server-ssl._tcp.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.   8640 IN    SRV 0 10 2380 etcd-0.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
+                                                                      SRV 0 10 2380 etcd-1.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
+                                                                      SRV 0 10 2380 etcd-2.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
 ;
 api                                      A ${API_VIP}
+api-int                                  A ${API_VIP}
 ns1                                      A ${DNS_VIP}
 $ORIGIN apps.${CLUSTER_NAME}.${CLUSTER_DOMAIN}.
 *                                        A ${INGRESS_VIP}
@@ -20,4 +24,6 @@ ${CLUSTER_NAME}-master-2                          A 10.0.1.129
 ${CLUSTER_NAME}-worker-0                          A 10.0.1.130
 ${CLUSTER_NAME}-worker-1                          A 10.0.1.131
 ${CLUSTER_NAME}-worker-2                          A 10.0.1.132
-
+etcd-0                                            IN CNAME ${CLUSTER_NAME}-master-0
+etcd-1                                            IN CNAME ${CLUSTER_NAME}-master-1
+etcd-2                                            IN CNAME ${CLUSTER_NAME}-master-2

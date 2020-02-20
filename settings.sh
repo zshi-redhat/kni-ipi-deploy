@@ -9,8 +9,8 @@ export BM_BRIDGE="baremetal"
 # Should be the IP you intend to use on the baremetal bridge on your DNS/DHCP server
 export BM_GW_IP="10.0.1.2"
 
-export CLUSTER_DOMAIN="ipi.testing"
-export CLUSTER_NAME="goblin"
+export CLUSTER_DOMAIN="ovn.testing"
+export CLUSTER_NAME="sriov"
 
 # Should be the IP you intend to use on the baremetal bridge on your DNS/DHCP server
 export DNS_IP="10.0.1.2"
@@ -25,30 +25,28 @@ export EXT_INTF="eno1"
 export INGRESS_VIP="10.0.1.5"
 
 # Provisioning MACs
-export MASTER_0_MAC="0c:c4:7a:db:a8:55"
-export MASTER_1_MAC="0C:C4:7A:DB:A9:93"
-export MASTER_2_MAC="0C:C4:7A:DB:A8:59"
+export MASTER_0_MAC="a4:bf:01:51:30:4c"
+export MASTER_1_MAC="a4:bf:01:51:42:19"
+export MASTER_2_MAC="a4:bf:01:51:30:53"
 
 # Baremetal MACs
-export MASTER_0_BM_MAC="0c:c4:7a:19:6f:84"
-export MASTER_1_BM_MAC="0c:c4:7a:19:6f:92"
-export MASTER_2_BM_MAC="0c:c4:7a:19:70:cc"
+export MASTER_0_BM_MAC="3c:fd:fe:b5:18:8c"
+export MASTER_1_BM_MAC="3c:fd:fe:b5:75:fc"
+export MASTER_2_BM_MAC="3c:fd:fe:b5:80:ac"
 
 export MASTER_COUNT="3"
 
 # Leave as-is
 export PROV_BRIDGE="provisioning"
 
-export PROV_BM_MAC="0c:c4:7a:19:6f:86"
+export PROV_BM_MAC="3c:fd:fe:a0:d7:e1"
 
 # Provisioning MACs
-export WORKER_0_MAC="0C:C4:7A:DB:AC:03"
-export WORKER_1_MAC="0c:c4:7a:db:a9:b3"
-export WORKER_2_MAC="0c:c4:7a:db:a9:b1"
+export WORKER_0_MAC="a4:bf:01:51:7e:40"
+export WORKER_1_MAC="a4:bf:01:51:47:59"
 
 # Baremetal MACs
-export WORKER_0_BM_MAC="0c:c4:7a:19:6f:7e"
-export WORKER_1_BM_MAC="0c:c4:7a:8e:ed:ec"
-export WORKER_2_BM_MAC="0c:c4:7a:8e:ed:f8"
+export WORKER_0_BM_MAC="98:03:9b:97:38:de"
+export WORKER_1_BM_MAC="98:03:9b:97:21:e6"
 
-export WORKER_COUNT="3"
+export WORKER_COUNT="2"
